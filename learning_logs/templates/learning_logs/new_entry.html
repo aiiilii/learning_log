@@ -1,25 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Entry</title>
 </head>
+
 <body>
     {% extends "learning_logs/base.html" %}
+    {% load bootstrap4 %}
+
+    {% block page_header %}
+    <h1><a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></h1>
+    {% endblock page_header %}
 
     {% block content %}
 
-    <p><a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></p>
-    
     <p>Add a new entry:</p>
 
-        <form action="{% url 'learning_logs:new_entry' topic.id %}" method='POST'>
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button name="submit">Add entry</button>
-        </form>
+    <form action="{% url 'learning_logs:new_entry' topic.id %}" method='POST' class="form">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+        <button name="submit" class="btn btn-primary">Add entry</button>
+        {% endbuttons %}
+
+    </form>
 
     {% endblock content %}
 </body>
+
 </html>
