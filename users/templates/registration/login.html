@@ -17,9 +17,9 @@
 
     {% block content %}
 
-    {% if form.errors %}
+    <!-- {% if form.errors %}
     <p>Your username and password didn't match. Please try again.</p>
-    {% endif %}
+    {% endif %} -->
 
     <form action="{% url 'users:login' %}" method='POST' class="form">
         {% csrf_token %}
